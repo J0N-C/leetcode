@@ -12,18 +12,28 @@
  */
 var addTwoNumbers = function (l1, l2) {
   let l1n = l1;
-  let array1 = [];
+  let num1 = 0;
+  let place = 1;
   while (l1n != null) {
-    array1.push(l1n.val);
-    n = n.next;
+    num1 += l1n.val * place;
+    place *= 10;
+    l1n = l1n.next;
   }
   let l2n = l2;
-  let array2 = [];
+  let num2 = 0;
+  place = 1;
   while (l2n != null) {
-    array2.push(l2n.val);
-    n = n.next;
+    num2 += l2n.val * place;
+    place *= 10;
+    l2n = l2n.next;
   }
-  const rl1 = parseInt(array1.slice().reverse().join(''));
-  const rl2 = parseInt(array2.slice().reverse().join(''));
-  return (rl1 + rl2).toString().split('').reverse();
+  console.log('numcheck', num1, num2, num1 + num2)
+  const reverseNum = String(num1 + num2).split('').reverse().join('');
+  let reverseList = new ListNode(reverseNum[0])
+  let rListHead = reverseList;
+  for (let i = 1; i < reverseNum.length; i++) {
+    reverseList.next = new ListNode(reverseNum[i])
+    reverseList = reverseList.next;
+  }
+  return rListHead;
 };
